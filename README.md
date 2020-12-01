@@ -5,8 +5,12 @@ This webinar was designed for the NHS-R Community to look at the new TidyModels 
 ## The session 
 
 The session will look at:
-
 <ol>
-
+  <li>Building a regression and classification model</li>
+  <li>Working with the Recipes package to preprocess your data ready for a predictive model</li>
+  <li>Approaches to data splitting and cross validation</li>
+  <li>Building a baseline model</li>
+  <li>Improving this with hyperparameter tuning</li>
+  <li>Evaluating your model</li>
 </ol>
-Tidymodels and Recipes NHS-R content
+
