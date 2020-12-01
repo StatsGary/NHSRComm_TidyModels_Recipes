@@ -6,7 +6,7 @@ This webinar was designed for the NHS-R Community to look at the new TidyModels 
 
 The session will align with the TidyModels framework:
 
-![Caption for the picture.](Images/tidymodel.png)
+![Caption for the picture.](Images/tidymodels.png)
 
 ## The session 
 
