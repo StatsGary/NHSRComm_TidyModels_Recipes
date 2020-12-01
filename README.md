@@ -2,6 +2,12 @@
 
 This webinar was designed for the NHS-R Community to look at the new TidyModels developments, and to build on the previous webinar where I discussed the use of Machine Learning in Caret. This seems like the next natural progression for this type of work. 
 
+## The TidyModels Framework
+
+The session will align with the TidyModels framework:
+
+![Caption for the picture.](Images/tidymodel.png)
+
 ## The session 
 
 The session will look at:
@@ -11,6 +17,7 @@ The session will look at:
   <li>Approaches to data splitting and cross validation</li>
   <li>Building a baseline model</li>
   <li>Improving this with hyperparameter tuning</li>
-  <li>Evaluating your model</li>
+  <li>Evaluating your model with Yardstick</li>
 </ol>
+
 
