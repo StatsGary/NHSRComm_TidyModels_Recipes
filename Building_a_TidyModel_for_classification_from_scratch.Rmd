@@ -25,13 +25,23 @@ library(magrittr)
 library(parallel)
 library(doParallel)
 library(vip)
+library(themis)
 ```
 
 # Starting out with TidyModels
 
 TidyModels is the newer version of Max Kuhn's CARET and can be used for a number of machine learning tasks. This modelling framework takes a different approach to modelling - allowing for a more structured workflow, and like tidyverse, has a whole set of packages for making the machine learning process easier. I will touch on a number of these packages in the following sub sections. 
 
-The aim of this webinar is to provide you with a classification model that you can build from scratch. 
+The framework of a TidyModels approach flows as so:
+
+![](Images/tidymodels.png)
+The aim of this webinar is to:
+
+- Teach you the steps to build an ML model from scratch
+- Work with rsample and recipes for feature engineering
+- Train and build a workflow with Parsnip
+- Evaluate your model with Yardstick and CARET
+- Improve your model with Tune and Dials
 
 # Step one - Importing data into the R environment
 
@@ -108,7 +118,7 @@ stranded_rec <-
   #Recipes step_date allows for additional features to be created from the date 
   step_rm(admit_date) %>% 
   #Remove the date, as we have created features off of it, if left in the dreaded multicolinearity may be present
-  step_upsample(stranded_class, over_ratio = as.numeric(upsample_ratio)) %>%  
+  themis::step_upsample(stranded_class, over_ratio = as.numeric(upsample_ratio)) %>%  
   #SMOTE recipe step to upsample the minority class i.e. stranded patients
   step_dummy(all_nominal(), -all_outcomes()) %>% 
   #Automatically created dummy variables for all categorical variables (nominal)
@@ -237,7 +247,10 @@ roc_plot <-
   autoplot
 
 print(roc_plot)
+
 ```
+
+
 I like ROC plots - but they only show you sensitivity how well it is at predicting stranded and the inverse how good it is at predicting not stranded. I like to look at the overall accuracy and balanced accuracy on a confusion matrix, for binomial classification problems. 
 
 I use the CARET package and utilise the confusion matrix functions to perform this:
