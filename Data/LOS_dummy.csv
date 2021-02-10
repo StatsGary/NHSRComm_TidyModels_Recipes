@@ -1,0 +1,460 @@
+LOS_days,EmergencyPatient,Temp_celsius,Oxygen_Hg,HeartRate_bpm,SystolicBP_mmHg,NumberTimesSeenInLast30Days,ReadmissionTag,ArrivalMode
+2,NEL,33.5,100,71,206,5,Readmission,Ambulance
+7,EL,36,91,103,98,1,Readmission,Ambulance
+2,NEL,37,83,125,222,2,Readmission,Walk-in
+7,EL,31,80,66,127,2,Not Readmitted,Walk-in
+3,NEL,28,65,56,118,0,Readmission,Other method
+8,EL,33,90,96,218,0,Not Readmitted,Walk-in
+4,NEL,32.5,57,69,179,2,Readmission,Ambulance
+6,EL,29.5,85,128,93,5,Readmission,Walk-in
+2,NEL,30.5,80,73,99,4,Readmission,Ambulance
+7,EL,34.5,96,77,96,2,Not Readmitted,Ambulance
+1,NEL,37,83,44,196,0,Readmission,Other method
+9,EL,34.5,90,51,199,1,Not Readmitted,Walk-in
+4,NEL,33,51,77,209,5,Readmission,Ambulance
+7,EL,34,92,83,179,1,Not Readmitted,Ambulance
+5,NEL,29,72,38,90,3,Readmission,Walk-in
+8,EL,32,77,72,141,2,Not Readmitted,Other method
+3,NEL,33,56,41,181,3,Readmission,Other method
+6,EL,28.5,94,40,192,2,Readmission,Walk-in
+2,NEL,34,97,61,173,4,Not Readmitted,Other method
+8,EL,31,87,113,192,3,Not Readmitted,Ambulance
+4,NEL,29.5,67,62,214,5,Readmission,Walk-in
+7,EL,36.5,94,67,165,4,Not Readmitted,Walk-in
+4,NEL,30.5,51,123,151,1,Readmission,Other method
+6,EL,30.5,96,77,202,3,Not Readmitted,Other method
+3,NEL,28.5,74,46,189,4,Not Readmitted,Ambulance
+6,EL,29,92,120,180,5,Readmission,Other method
+4,NEL,28.5,58,66,154,0,Readmission,Other method
+7,EL,33.5,94,50,145,5,Not Readmitted,Other method
+4,NEL,41,56,72,139,5,Readmission,Ambulance
+8,EL,40,89,126,137,1,Not Readmitted,Walk-in
+1,NEL,38,86,56,113,3,Readmission,Walk-in
+8,EL,39,97,83,157,3,Not Readmitted,Other method
+4,NEL,37,59,77,94,3,Not Readmitted,Other method
+7,EL,33.5,98,115,227,3,Readmission,Other method
+4,NEL,41,66,44,108,4,Not Readmitted,Walk-in
+9,EL,41,82,107,227,1,Not Readmitted,Walk-in
+2,NEL,39,86,110,163,5,Readmission,Ambulance
+10,EL,41,78,116,177,3,Readmission,Ambulance
+2,NEL,39,78,122,137,4,Readmission,Other method
+11,EL,39,78,98,190,2,Not Readmitted,Other method
+5,NEL,41,53,108,136,3,Not Readmitted,Ambulance
+12,EL,40,86,126,188,1,Readmission,Walk-in
+5,NEL,41,68,51,102,2,Not Readmitted,Ambulance
+9,EL,39,79,126,158,4,Not Readmitted,Other method
+5,NEL,39,72,77,177,1,Not Readmitted,Walk-in
+10,EL,39,81,127,130,3,Readmission,Walk-in
+3,NEL,38.5,70,117,217,5,Readmission,Walk-in
+8,EL,36,81,130,110,2,Not Readmitted,Other method
+3,NEL,32.5,56,63,119,3,Not Readmitted,Ambulance
+9,EL,36.5,86,41,185,2,Not Readmitted,Other method
+5,NEL,38,54,69,214,3,Not Readmitted,Walk-in
+8,EL,38.5,89,67,169,5,Readmission,Other method
+2,NEL,38,83,71,155,4,Not Readmitted,Walk-in
+8,EL,38,96,72,110,4,Readmission,Other method
+1,NEL,38,76,89,121,1,Readmission,Other method
+8,EL,37.5,95,123,166,1,Not Readmitted,Other method
+3,NEL,39,52,118,183,1,Not Readmitted,Ambulance
+8,EL,36.5,86,126,201,2,Not Readmitted,Other method
+1,NEL,39,81,103,209,5,Not Readmitted,Walk-in
+9,EL,38.5,97,79,126,5,Not Readmitted,Other method
+5,NEL,40,58,47,119,4,Not Readmitted,Other method
+8,EL,39,92,125,209,4,Not Readmitted,Walk-in
+1,NEL,41,76,132,177,4,Readmission,Other method
+8,EL,40,76,56,196,3,Readmission,Walk-in
+3,NEL,39,53,52,163,3,Not Readmitted,Ambulance
+10,EL,41,83,76,200,3,Readmission,Other method
+3,NEL,41,55,65,127,2,Readmission,Ambulance
+10,EL,40,100,94,159,2,Not Readmitted,Other method
+5,NEL,41,61,98,114,3,Readmission,Walk-in
+10,EL,40,99,51,137,3,Not Readmitted,Walk-in
+1,NEL,39,95,135,194,1,Not Readmitted,Other method
+9,EL,39,97,63,197,3,Not Readmitted,Ambulance
+5,NEL,36.5,51,96,173,3,Readmission,Other method
+8,EL,41,79,117,112,3,Readmission,Ambulance
+1,NEL,41,96,42,199,3,Readmission,Walk-in
+10,EL,39,80,55,95,1,Readmission,Walk-in
+2,NEL,39,89,45,137,4,Readmission,Other method
+8,EL,41,88,68,168,1,Not Readmitted,Ambulance
+5,NEL,39,64,127,220,3,Readmission,Other method
+11,EL,41,75,125,194,3,Not Readmitted,Ambulance
+5,NEL,41,53,125,222,2,Readmission,Walk-in
+8,EL,37,87,112,150,5,Not Readmitted,Ambulance
+4,NEL,41,63,45,197,3,Readmission,Ambulance
+9,EL,40,87,81,96,1,Not Readmitted,Other method
+1,NEL,41,98,116,140,4,Not Readmitted,Walk-in
+9,EL,41,77,69,132,1,Readmission,Ambulance
+4,NEL,39,66,65,171,2,Not Readmitted,Other method
+11,EL,41,97,41,155,2,Not Readmitted,Other method
+4,NEL,40,62,53,148,5,Readmission,Ambulance
+9,EL,40,81,128,143,2,Readmission,Other method
+2,NEL,41,85,79,119,2,Not Readmitted,Other method
+8,EL,41,76,36,166,3,Not Readmitted,Other method
+4,NEL,40,53,108,146,1,Readmission,Other method
+9,EL,41,99,71,208,1,Not Readmitted,Other method
+1,NEL,39,88,75,110,5,Not Readmitted,Walk-in
+10,EL,40,90,121,152,0,Readmission,Ambulance
+1,NEL,40,98,129,171,0,Readmission,Walk-in
+9,EL,39,82,86,113,0,Readmission,Walk-in
+5,NEL,41,71,70,107,4,Readmission,Other method
+10,EL,39,88,118,205,5,Readmission,Ambulance
+5,NEL,41,63,101,123,5,Readmission,Other method
+10,EL,40,75,95,196,3,Readmission,Ambulance
+5,NEL,40,51,108,169,3,Readmission,Ambulance
+10,EL,40,98,105,218,4,Not Readmitted,Ambulance
+3,NEL,41,52,90,230,4,Readmission,Walk-in
+8,EL,40,93,93,124,3,Readmission,Other method
+1,NEL,41,81,106,135,2,Not Readmitted,Ambulance
+8,EL,38.5,79,88,133,2,Readmission,Walk-in
+3,NEL,39,59,35,212,5,Readmission,Ambulance
+10,EL,38,75,51,89,4,Readmission,Walk-in
+3,NEL,39,61,97,133,5,Readmission,Ambulance
+10,EL,39,89,126,164,5,Not Readmitted,Ambulance
+3,NEL,38.5,72,95,115,2,Not Readmitted,Other method
+7,EL,36,93,90,94,3,Readmission,Other method
+2,NEL,37.5,84,133,206,1,Not Readmitted,Ambulance
+9,EL,41,77,98,108,4,Readmission,Other method
+4,NEL,41,69,125,180,3,Readmission,Walk-in
+11,EL,41,99,84,123,2,Not Readmitted,Ambulance
+3,NEL,41,50,105,150,3,Not Readmitted,Walk-in
+11,EL,39,85,78,121,1,Readmission,Other method
+3,NEL,39,67,40,171,2,Not Readmitted,Ambulance
+11,EL,41,84,83,162,4,Readmission,Walk-in
+4,NEL,40,65,119,133,2,Not Readmitted,Other method
+9,EL,39,95,104,109,4,Not Readmitted,Other method
+1,NEL,41,80,118,217,1,Not Readmitted,Other method
+12,EL,41,78,38,169,1,Readmission,Other method
+4,NEL,39,73,103,156,4,Readmission,Ambulance
+11,EL,40,90,132,123,3,Not Readmitted,Other method
+3,NEL,41,60,39,177,4,Readmission,Walk-in
+10,EL,40,85,123,101,2,Readmission,Other method
+3,NEL,39,71,87,134,3,Not Readmitted,Walk-in
+9,EL,37.5,76,55,177,3,Readmission,Ambulance
+3,NEL,36.5,63,111,154,5,Readmission,Ambulance
+10,EL,41,98,73,206,5,Readmission,Walk-in
+4,NEL,38,67,113,92,3,Readmission,Walk-in
+9,EL,38.5,77,74,145,3,Not Readmitted,Other method
+3,NEL,35.5,70,87,170,2,Readmission,Ambulance
+7,EL,35.5,91,73,227,5,Not Readmitted,Walk-in
+3,NEL,39,52,66,175,4,Readmission,Other method
+7,EL,33.5,81,36,230,5,Readmission,Ambulance
+4,NEL,38,56,43,155,5,Not Readmitted,Other method
+8,EL,34,91,58,129,1,Not Readmitted,Other method
+4,NEL,40,66,77,214,1,Not Readmitted,Walk-in
+6,EL,32,79,98,220,1,Not Readmitted,Walk-in
+4,NEL,35.5,52,70,191,3,Readmission,Walk-in
+8,EL,40,97,78,196,2,Not Readmitted,Walk-in
+2,NEL,34.5,81,101,194,2,Readmission,Ambulance
+8,EL,31.5,100,86,195,3,Not Readmitted,Ambulance
+2,NEL,35,94,78,90,4,Not Readmitted,Walk-in
+8,EL,38.5,95,99,107,3,Readmission,Walk-in
+2,NEL,37.5,90,47,228,1,Not Readmitted,Walk-in
+8,EL,38,90,95,229,1,Readmission,Other method
+4,NEL,34,60,135,142,5,Readmission,Walk-in
+2,NEL,33.5,100,#DIV/0!,135,5,Readmission,Ambulance
+7,EL,36,91,58,192,1,Not Readmitted,Ambulance
+2,NEL,37,83,74,145,2,Not Readmitted,Walk-in
+7,EL,31,80,113,219,2,Not Readmitted,Walk-in
+3,NEL,28,65,134,183,0,Not Readmitted,Other method
+8,EL,33,90,43,188,0,Readmission,Walk-in
+4,NEL,32.5,57,95,97,2,Readmission,Ambulance
+6,EL,29.5,85,114,229,5,Not Readmitted,Walk-in
+2,NEL,30.5,80,56,227,4,Not Readmitted,Ambulance
+7,EL,34.5,96,38,126,2,Readmission,Ambulance
+1,NEL,37,83,95,208,0,Readmission,Other method
+9,EL,34.5,90,124,151,1,Readmission,Walk-in
+4,NEL,33,51,46,162,5,Not Readmitted,Ambulance
+7,EL,34,92,90,146,1,Readmission,Ambulance
+5,NEL,29,72,50,136,3,Readmission,Walk-in
+8,EL,32,77,90,105,2,Readmission,Other method
+3,NEL,33,56,111,172,3,Readmission,Other method
+6,EL,28.5,94,101,116,2,Readmission,Walk-in
+2,NEL,34,97,132,143,4,Readmission,Other method
+8,EL,31,87,53,198,3,Not Readmitted,Ambulance
+4,NEL,29.5,67,57,219,5,Readmission,Walk-in
+7,EL,36.5,94,102,151,4,Readmission,Walk-in
+4,NEL,30.5,51,111,114,1,Not Readmitted,Other method
+6,EL,30.5,96,108,211,3,Readmission,Other method
+3,NEL,28.5,74,45,151,4,Readmission,Ambulance
+6,EL,29,92,103,110,5,Not Readmitted,Other method
+4,NEL,28.5,58,86,156,0,Not Readmitted,Other method
+7,EL,33.5,94,73,170,5,Readmission,Other method
+4,NEL,41,56,120,155,5,Readmission,Ambulance
+8,EL,40,89,113,162,1,Not Readmitted,Walk-in
+1,NEL,38,86,38,206,3,Readmission,Walk-in
+8,EL,39,97,44,156,3,Readmission,Other method
+4,NEL,37,59,106,219,3,Not Readmitted,Other method
+7,EL,33.5,98,43,219,3,Readmission,Other method
+4,NEL,41,66,38,134,4,Readmission,Walk-in
+9,EL,41,82,103,104,1,Readmission,Walk-in
+2,NEL,39,86,35,108,5,Readmission,Ambulance
+10,EL,41,78,116,201,3,Readmission,Ambulance
+2,NEL,39,78,110,230,4,Readmission,Other method
+11,EL,39,78,108,125,2,Readmission,Other method
+5,NEL,41,53,113,132,3,Not Readmitted,Ambulance
+12,EL,40,86,113,167,1,Readmission,Walk-in
+5,NEL,41,68,111,194,2,Not Readmitted,Ambulance
+9,EL,39,79,129,213,4,Not Readmitted,Other method
+5,NEL,39,72,35,220,1,Readmission,Walk-in
+10,EL,39,81,81,148,3,Not Readmitted,Walk-in
+3,NEL,38.5,70,125,150,5,Readmission,Walk-in
+8,EL,36,81,121,230,2,Readmission,Other method
+3,NEL,32.5,56,65,160,3,Not Readmitted,Ambulance
+9,EL,36.5,86,41,211,2,Readmission,Other method
+5,NEL,38,54,87,101,3,Not Readmitted,Walk-in
+8,EL,38.5,89,131,222,5,Readmission,Other method
+2,NEL,38,83,99,103,4,Readmission,Walk-in
+8,EL,38,96,121,223,4,Readmission,Other method
+1,NEL,38,76,114,143,1,Not Readmitted,Other method
+8,EL,37.5,95,89,225,1,Readmission,Other method
+3,NEL,39,52,66,128,1,Readmission,Ambulance
+8,EL,36.5,86,64,196,2,Readmission,Other method
+1,NEL,39,81,87,157,5,Not Readmitted,Walk-in
+9,EL,38.5,97,48,145,5,Readmission,Other method
+5,NEL,40,58,122,131,4,Not Readmitted,Other method
+8,EL,39,92,46,187,4,Not Readmitted,Walk-in
+1,NEL,41,76,103,160,4,Readmission,Other method
+8,EL,40,76,115,225,3,Not Readmitted,Walk-in
+3,NEL,39,53,128,91,3,Readmission,Ambulance
+10,EL,41,83,128,162,3,Readmission,Other method
+3,NEL,41,55,63,110,2,Readmission,Ambulance
+10,EL,40,100,115,153,2,Readmission,Other method
+5,NEL,41,61,96,103,3,Not Readmitted,Walk-in
+10,EL,40,99,57,195,3,Readmission,Walk-in
+1,NEL,39,95,96,143,1,Not Readmitted,Other method
+9,EL,39,97,57,154,3,Readmission,Ambulance
+5,NEL,36.5,51,118,172,3,Not Readmitted,Other method
+8,EL,41,79,54,225,3,Readmission,Ambulance
+1,NEL,41,96,124,161,3,Readmission,Walk-in
+10,EL,39,80,70,142,1,Not Readmitted,Walk-in
+2,NEL,39,89,90,188,4,Not Readmitted,Other method
+8,EL,41,88,44,230,1,Not Readmitted,Ambulance
+5,NEL,39,64,56,161,3,Not Readmitted,Other method
+11,EL,41,75,48,113,3,Not Readmitted,Ambulance
+5,NEL,41,53,110,229,2,Not Readmitted,Walk-in
+8,EL,37,87,114,191,5,Not Readmitted,Ambulance
+4,NEL,41,63,85,208,3,Not Readmitted,Ambulance
+9,EL,40,87,75,103,1,Not Readmitted,Other method
+1,NEL,41,98,52,130,4,Not Readmitted,Walk-in
+9,EL,41,77,74,125,1,Not Readmitted,Ambulance
+4,NEL,39,66,60,181,2,Readmission,Other method
+11,EL,41,97,59,127,2,Readmission,Other method
+4,NEL,40,62,121,185,5,Not Readmitted,Ambulance
+9,EL,40,81,43,154,2,Readmission,Other method
+2,NEL,41,85,59,162,2,Not Readmitted,Other method
+8,EL,41,76,88,193,3,Not Readmitted,Other method
+4,NEL,40,53,134,174,1,Not Readmitted,Other method
+9,EL,41,99,51,136,1,Readmission,Other method
+1,NEL,39,88,114,214,5,Not Readmitted,Walk-in
+10,EL,40,90,48,202,0,Not Readmitted,Ambulance
+1,NEL,40,98,120,201,0,Not Readmitted,Walk-in
+9,EL,39,82,40,138,0,Readmission,Walk-in
+5,NEL,41,71,118,228,4,Readmission,Other method
+10,EL,39,88,37,200,5,Not Readmitted,Ambulance
+5,NEL,41,63,81,196,5,Not Readmitted,Other method
+10,EL,40,75,41,105,3,Not Readmitted,Ambulance
+5,NEL,40,51,127,175,3,Readmission,Ambulance
+10,EL,40,98,112,179,4,Not Readmitted,Ambulance
+3,NEL,41,52,113,145,4,Not Readmitted,Walk-in
+8,EL,40,93,105,202,3,Readmission,Other method
+1,NEL,41,81,42,115,2,Readmission,Ambulance
+8,EL,38.5,79,61,157,2,Not Readmitted,Walk-in
+3,NEL,39,59,64,213,5,Readmission,Ambulance
+10,EL,38,75,59,172,4,Not Readmitted,Walk-in
+3,NEL,39,61,94,89,5,Not Readmitted,Ambulance
+10,EL,39,89,47,227,5,Not Readmitted,Ambulance
+3,NEL,38.5,72,132,221,2,Readmission,Other method
+7,EL,36,93,70,133,3,Not Readmitted,Other method
+2,NEL,37.5,84,97,122,1,Not Readmitted,Ambulance
+9,EL,41,77,63,224,4,Readmission,Other method
+4,NEL,41,69,130,131,3,Not Readmitted,Walk-in
+11,EL,41,99,117,120,2,Readmission,Ambulance
+3,NEL,41,50,123,220,3,Readmission,Walk-in
+11,EL,39,85,46,133,1,Readmission,Other method
+3,NEL,39,67,43,164,2,Readmission,Ambulance
+11,EL,41,84,46,165,4,Readmission,Walk-in
+4,NEL,40,65,84,203,2,Readmission,Other method
+9,EL,39,95,59,125,4,Readmission,Other method
+1,NEL,41,80,122,131,1,Readmission,Other method
+12,EL,41,78,94,90,1,Not Readmitted,Other method
+4,NEL,39,73,68,164,4,Not Readmitted,Ambulance
+11,EL,40,90,48,168,3,Not Readmitted,Other method
+3,NEL,41,60,135,230,4,Readmission,Walk-in
+10,EL,40,85,88,116,2,Readmission,Other method
+3,NEL,39,71,129,118,3,Readmission,Walk-in
+9,EL,37.5,76,125,129,3,Not Readmitted,Ambulance
+3,NEL,36.5,63,83,93,5,Not Readmitted,Ambulance
+10,EL,41,98,60,218,5,Not Readmitted,Walk-in
+4,NEL,38,67,119,150,3,Readmission,Walk-in
+9,EL,38.5,77,87,216,3,Not Readmitted,Other method
+3,NEL,35.5,70,85,90,2,Not Readmitted,Ambulance
+7,EL,35.5,91,114,191,5,Readmission,Walk-in
+3,NEL,39,52,43,151,4,Readmission,Other method
+7,EL,33.5,81,38,95,5,Not Readmitted,Ambulance
+4,NEL,38,56,107,210,5,Not Readmitted,Other method
+8,EL,34,91,69,207,1,Readmission,Other method
+4,NEL,40,66,61,216,1,Readmission,Walk-in
+6,EL,32,79,66,199,1,Not Readmitted,Walk-in
+4,NEL,35.5,52,73,110,3,Not Readmitted,Walk-in
+8,EL,40,97,117,154,2,Readmission,Walk-in
+2,NEL,34.5,81,85,102,2,Not Readmitted,Ambulance
+8,EL,31.5,100,36,181,3,Not Readmitted,Ambulance
+2,NEL,35,94,135,205,4,Readmission,Walk-in
+8,EL,38.5,95,98,220,3,Readmission,Walk-in
+2,NEL,37.5,90,83,170,1,Readmission,Walk-in
+8,EL,38,90,111,186,1,Readmission,Other method
+4,NEL,34,60,94,179,5,Not Readmitted,Walk-in
+2,NEL,33.5,100,#DIV/0!,98,5,Not Readmitted,Ambulance
+7,EL,36,91,120,196,1,Readmission,Ambulance
+2,NEL,37,83,50,227,2,Readmission,Walk-in
+7,EL,31,80,94,154,2,Readmission,Walk-in
+3,NEL,28,65,97,176,0,Readmission,Other method
+8,EL,33,90,105,225,0,Not Readmitted,Walk-in
+4,NEL,32.5,57,76,185,2,Not Readmitted,Ambulance
+6,EL,29.5,85,123,208,5,Not Readmitted,Walk-in
+2,NEL,30.5,80,51,214,4,Readmission,Ambulance
+7,EL,34.5,96,41,131,2,Readmission,Ambulance
+1,NEL,37,83,40,163,0,Readmission,Other method
+9,EL,34.5,90,77,152,1,Not Readmitted,Walk-in
+4,NEL,33,51,128,95,5,Readmission,Ambulance
+7,EL,34,92,93,93,1,Readmission,Ambulance
+5,NEL,29,72,118,94,3,Not Readmitted,Walk-in
+8,EL,32,77,53,176,2,Readmission,Other method
+3,NEL,33,56,130,224,3,Readmission,Other method
+6,EL,28.5,94,36,151,2,Not Readmitted,Walk-in
+2,NEL,34,97,78,191,4,Not Readmitted,Other method
+8,EL,31,87,104,169,3,Readmission,Ambulance
+4,NEL,29.5,67,82,173,5,Not Readmitted,Walk-in
+7,EL,36.5,94,119,128,4,Not Readmitted,Walk-in
+4,NEL,30.5,51,37,155,1,Not Readmitted,Other method
+6,EL,30.5,96,91,114,3,Not Readmitted,Other method
+3,NEL,28.5,74,103,216,4,Not Readmitted,Ambulance
+6,EL,29,92,86,130,5,Readmission,Other method
+4,NEL,28.5,58,124,104,0,Readmission,Other method
+7,EL,33.5,94,47,155,5,Not Readmitted,Other method
+4,NEL,41,56,91,175,5,Not Readmitted,Ambulance
+8,EL,40,89,69,216,1,Not Readmitted,Walk-in
+1,NEL,38,86,118,132,3,Not Readmitted,Walk-in
+8,EL,39,97,71,224,3,Readmission,Other method
+4,NEL,37,59,80,91,3,Not Readmitted,Other method
+7,EL,33.5,98,82,161,3,Not Readmitted,Other method
+4,NEL,41,66,61,179,4,Readmission,Walk-in
+9,EL,41,82,50,129,1,Not Readmitted,Walk-in
+2,NEL,39,86,61,131,5,Not Readmitted,Ambulance
+10,EL,41,78,116,107,3,Not Readmitted,Ambulance
+2,NEL,39,78,51,199,4,Not Readmitted,Other method
+11,EL,39,78,110,211,2,Readmission,Other method
+5,NEL,41,53,57,188,3,Readmission,Ambulance
+12,EL,40,86,53,185,1,Readmission,Walk-in
+5,NEL,41,68,46,121,2,Not Readmitted,Ambulance
+9,EL,39,79,119,128,4,Not Readmitted,Other method
+5,NEL,39,72,109,204,1,Readmission,Walk-in
+10,EL,39,81,126,219,3,Readmission,Walk-in
+3,NEL,38.5,70,130,223,5,Readmission,Walk-in
+8,EL,36,81,131,210,2,Readmission,Other method
+3,NEL,32.5,56,79,108,3,Readmission,Ambulance
+9,EL,36.5,86,104,106,2,Readmission,Other method
+5,NEL,38,54,80,116,3,Readmission,Walk-in
+8,EL,38.5,89,38,206,5,Readmission,Other method
+2,NEL,38,83,66,201,4,Not Readmitted,Walk-in
+8,EL,38,96,118,186,4,Readmission,Other method
+1,NEL,38,76,99,192,1,Readmission,Other method
+8,EL,37.5,95,122,163,1,Readmission,Other method
+3,NEL,39,52,85,96,1,Not Readmitted,Ambulance
+8,EL,36.5,86,37,98,2,Not Readmitted,Other method
+1,NEL,39,81,98,170,5,Readmission,Walk-in
+9,EL,38.5,97,107,219,5,Not Readmitted,Other method
+5,NEL,40,58,135,112,4,Not Readmitted,Other method
+8,EL,39,92,64,121,4,Readmission,Walk-in
+1,NEL,41,76,83,198,4,Not Readmitted,Other method
+8,EL,40,76,56,226,3,Readmission,Walk-in
+3,NEL,39,53,96,164,3,Readmission,Ambulance
+10,EL,41,83,36,146,3,Not Readmitted,Other method
+3,NEL,41,55,130,96,2,Not Readmitted,Ambulance
+10,EL,40,100,82,195,2,Readmission,Other method
+5,NEL,41,61,96,154,3,Readmission,Walk-in
+10,EL,40,99,38,172,3,Readmission,Walk-in
+1,NEL,39,95,81,143,1,Not Readmitted,Other method
+9,EL,39,97,115,137,3,Readmission,Ambulance
+5,NEL,36.5,51,102,164,3,Readmission,Other method
+8,EL,41,79,59,197,3,Not Readmitted,Ambulance
+1,NEL,41,96,119,195,3,Readmission,Walk-in
+10,EL,39,80,101,188,1,Not Readmitted,Walk-in
+2,NEL,39,89,56,197,4,Not Readmitted,Other method
+8,EL,41,88,101,149,1,Readmission,Ambulance
+5,NEL,39,64,113,154,3,Readmission,Other method
+11,EL,41,75,59,139,3,Readmission,Ambulance
+5,NEL,41,53,92,142,2,Not Readmitted,Walk-in
+8,EL,37,87,95,138,5,Readmission,Ambulance
+4,NEL,41,63,110,147,3,Not Readmitted,Ambulance
+9,EL,40,87,56,133,1,Readmission,Other method
+1,NEL,41,98,114,188,4,Readmission,Walk-in
+9,EL,41,77,76,122,1,Readmission,Ambulance
+4,NEL,39,66,125,132,2,Not Readmitted,Other method
+11,EL,41,97,87,178,2,Readmission,Other method
+4,NEL,40,62,98,119,5,Readmission,Ambulance
+9,EL,40,81,102,157,2,Readmission,Other method
+2,NEL,41,85,67,194,2,Readmission,Other method
+8,EL,41,76,49,176,3,Not Readmitted,Other method
+4,NEL,40,53,119,178,1,Readmission,Other method
+9,EL,41,99,60,109,1,Not Readmitted,Other method
+1,NEL,39,88,109,110,5,Readmission,Walk-in
+10,EL,40,90,101,90,0,Readmission,Ambulance
+1,NEL,40,98,54,168,0,Readmission,Walk-in
+9,EL,39,82,128,109,0,Readmission,Walk-in
+5,NEL,41,71,117,174,4,Not Readmitted,Other method
+10,EL,39,88,38,124,5,Readmission,Ambulance
+5,NEL,41,63,69,187,5,Not Readmitted,Other method
+10,EL,40,75,52,103,3,Readmission,Ambulance
+5,NEL,40,51,98,144,3,Readmission,Ambulance
+10,EL,40,98,112,202,4,Readmission,Ambulance
+3,NEL,41,52,95,200,4,Not Readmitted,Walk-in
+8,EL,40,93,94,120,3,Readmission,Other method
+1,NEL,41,81,47,104,2,Not Readmitted,Ambulance
+8,EL,38.5,79,84,154,2,Readmission,Walk-in
+3,NEL,39,59,42,113,5,Not Readmitted,Ambulance
+10,EL,38,75,129,207,4,Not Readmitted,Walk-in
+3,NEL,39,61,88,140,5,Readmission,Ambulance
+10,EL,39,89,110,175,5,Not Readmitted,Ambulance
+3,NEL,38.5,72,56,122,2,Not Readmitted,Other method
+7,EL,36,93,71,114,3,Not Readmitted,Other method
+2,NEL,37.5,84,41,156,1,Readmission,Ambulance
+9,EL,41,77,53,108,4,Readmission,Other method
+4,NEL,41,69,45,216,3,Not Readmitted,Walk-in
+11,EL,41,99,126,136,2,Not Readmitted,Ambulance
+3,NEL,41,50,62,98,3,Readmission,Walk-in
+11,EL,39,85,132,105,1,Not Readmitted,Other method
+3,NEL,39,67,81,132,2,Not Readmitted,Ambulance
+11,EL,41,84,134,119,4,Not Readmitted,Walk-in
+4,NEL,40,65,65,214,2,Readmission,Other method
+9,EL,39,95,90,107,4,Readmission,Other method
+1,NEL,41,80,107,230,1,Readmission,Other method
+12,EL,41,78,114,213,1,Not Readmitted,Other method
+4,NEL,39,73,49,89,4,Readmission,Ambulance
+11,EL,40,90,92,222,3,Not Readmitted,Other method
+3,NEL,41,60,68,170,4,Readmission,Walk-in
+10,EL,40,85,98,96,2,Not Readmitted,Other method
+3,NEL,39,71,94,90,3,Not Readmitted,Walk-in
+9,EL,37.5,76,90,218,3,Readmission,Ambulance
+3,NEL,36.5,63,68,181,5,Not Readmitted,Ambulance
+10,EL,41,98,100,161,5,Readmission,Walk-in
+4,NEL,38,67,133,170,3,Readmission,Walk-in
+9,EL,38.5,77,35,137,3,Not Readmitted,Other method
+3,NEL,35.5,70,125,212,2,Readmission,Ambulance
+7,EL,35.5,91,70,223,5,Readmission,Walk-in
+3,NEL,39,52,57,160,4,Not Readmitted,Other method
+7,EL,33.5,81,76,186,5,Not Readmitted,Ambulance
+4,NEL,38,56,94,226,5,Not Readmitted,Other method
+8,EL,34,91,121,155,1,Not Readmitted,Other method
+4,NEL,40,66,98,149,1,Not Readmitted,Walk-in
+6,EL,32,79,86,136,1,Not Readmitted,Walk-in
+4,NEL,35.5,52,73,190,3,Readmission,Walk-in
+8,EL,40,97,90,213,2,Readmission,Walk-in
+2,NEL,34.5,81,56,94,2,Readmission,Ambulance
+8,EL,31.5,100,116,139,3,Not Readmitted,Ambulance
+2,NEL,35,94,115,114,4,Readmission,Walk-in
+8,EL,38.5,95,96,101,3,Readmission,Walk-in
+2,NEL,37.5,90,100,220,1,Readmission,Walk-in
+8,EL,38,90,123,105,1,Readmission,Other method
+4,NEL,34,60,73,138,5,Not Readmitted,Walk-in

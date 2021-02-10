@@ -206,11 +206,11 @@ lr_mod <-
   logistic_reg() %>% 
   set_engine("glm")
 
-flights_wflow <- 
+stranded_wflow <- 
   workflow() %>% 
   add_model(lr_mod) %>% 
   add_recipe(flights_rec)
-flights_wflow
+
 
 flights_fit <- 
   flights_wflow %>% 
