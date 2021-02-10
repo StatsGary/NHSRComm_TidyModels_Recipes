@@ -148,6 +148,7 @@ cm <- caret::confusionMatrix(stranded_preds$stranded_class,
 
 # As it is a binary classification problem this can be evaluated on the custom confusion matrix plot I provide with this session
 source("Functions/confusion_matrix_plot_function.R")
+
 cm_plot <- conf_matrix_plot(cm, class_label1 = "Not Stranded", 
                      class_label2 = "Stranded")
 

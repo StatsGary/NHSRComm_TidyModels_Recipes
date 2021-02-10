@@ -1,8 +1,16 @@
 ---
 title: "Building a TidyModel for Classification from scratch"
-author: "Gary Hutson"
+author: "Gary Hutson - Head of Advanced Analytics"
 date: "10/02/2021"
-output: html_document
+output:
+  html_document:
+    theme: lumen
+    highlight: tango
+    toc: true
+    number_sections: true
+    toc_float:
+      collapsed: false
+      smooth_scroll: false
 ---
 
 ```{r setup, include=FALSE}
@@ -19,13 +27,13 @@ library(doParallel)
 library(vip)
 ```
 
-## Starting out with TidyModels
+# Starting out with TidyModels
 
 TidyModels is the newer version of Max Kuhn's CARET and can be used for a number of machine learning tasks. This modelling framework takes a different approach to modelling - allowing for a more structured workflow, and like tidyverse, has a whole set of packages for making the machine learning process easier. I will touch on a number of these packages in the following sub sections. 
 
 The aim of this webinar is to provide you with a classification model that you can build from scratch. 
 
-## Step one - Importing data into the R environment
+# Step one - Importing data into the R environment
 
 I will load in the stranded patient data - a stranded patient is a patient that has been in hospital for longer than 7 days and we also call these <strong>Long Waiters</strong>. The import steps are below and use the native readr package to load this in:
 
@@ -44,7 +52,7 @@ print(head(strand_pat))
 
 As this is a classification problem we need to look at the classification imbalance in the predictor variable i.e. the thing we are trying to predict. 
 
-## Step Two - Analysing the Class Imbalance
+# Step Two - Analysing the Class Imbalance
 
 The following code looks at the class imbalance as a volume and proportion and then I am going to use the second index from the class balance table i.e. the number of people who are long waiters is going to be lower than those that aren't, otherwise we are offering a very poor service to patients. 
 
@@ -59,7 +67,7 @@ print(upsample_ratio)
 
 ```
 
-## Step Three - Observe data structures
+# Step Three - Observe data structures
 
 It is always a good idea to observe the data structures of the data items we are trying to predict. I generally separate the names of the variables out into factors, integer / numerics and character vectors:
 
@@ -73,7 +81,7 @@ print(factors); print(numbers); print(characters)
 
 ```
 
-## Step Four - Using Rsample to create ML data partitions
+# Step Four - Using Rsample to create ML data partitions
 
 The Rsample package makes it easy to divide your data up. To view all the functionality navigate to the [Rsample](https://rsample.tidymodels.org/) vignette.
 
@@ -88,7 +96,7 @@ test_data <- rsample::testing(split)
 
 ```
 
-## Step Five - Creating your first Tidy Recipe
+# Step Five - Creating your first Tidy Recipe
 
 Recipes is an excellent package. I have for years done feature, dummy and other types of coding and feature selection with CARET, also a great package, but this makes the process much simpiler. The first part of the recipe is to fit your model and then you add recipe steps, this is supposed to replicate baking adding the specific ingredients. For all the particular steps that recipes contains, go directly to the [recipes](https://recipes.tidymodels.org/reference/index.html) site. 
 
@@ -114,7 +122,7 @@ print(stranded_rec) #Terminology is to use recipe
 
 To look up some of these steps, I have previously covered them in a [CARET tutorial](https://www.youtube.com/watch?v=rO40vvKXU-4&t=1216s). For all the list of recipes steps refer to the link above the code chunk. 
 
-## Step Six - Get Parsnipping
+# Step Six - Get Parsnipping
 
 The package [Parsnip](https://parsnip.tidymodels.org/articles/articles/Models.html) is the model to work with TidyModels. Parsnip still does not have many of the algorithms present in CARET, but it makes it much simpler to work in the tidy way. 
 
@@ -124,7 +132,7 @@ The reason Logistic Regression is the choice as it is a nice generalised linear 
 
 TidyModels has a workflow structure which we will build in the next few steps:
 
-### Instantiate the model
+## Instantiate the model
 
 In TidyModels you have to create an instance of the model in memory before working with it:
 
@@ -140,7 +148,7 @@ print(lr_mod)
 
 The next step is to create the model workflow.
 
-### Creating the model workflow
+## Creating the model workflow
 
 Now it is time to do the workflow to connect the newly instantiated model together:
 ```{r createwf}
@@ -154,7 +162,7 @@ print(strand_wf)
 
 ```
 
-### Fitting the workflow to our data
+## Fitting the workflow to our data
 
 The next step is fitting the model to our data:
 ```{r fit_model}
@@ -166,7 +174,7 @@ strand_fit <-
 
 ```
 
-### Extracting the fitted data
+## Extracting the fitted data
 
 The final step is to use the pull_workflow_fit() parameter to retrieve the fit on the workflow:
 ```{r extract_fit}
@@ -177,7 +185,7 @@ strand_fitted <- strand_fit %>%
 print(strand_fitted)
 
 ```
-### Create custom plot to visualise significance utilising p values
+## Create custom plot to visualise significance utilising p values
 
 As an optional step I have created a plot to visualise the significance. This will only work with linear, and generalized linear models, that analyse p values from t tests and finding the probability value from the t distribution. The visualisation code is contained hereunder: 
 ```{r significancevisualisation}
@@ -203,7 +211,7 @@ ggsave("Figures/p_val_plot.png", plot) #Save the plot
 
 ```
 
-## Step Seven - Predicting with the holdout (test) dataset
+# Step Seven - Predicting with the holdout (test) dataset
 
 Now we will assess how well the model predicts on the test (holdout) data to evaluate if we want to productionise the model, or abandon it at this stage. This is implemented below:
 
@@ -219,7 +227,7 @@ stranded_preds <- test_data %>%
 print(tail(lr_predictions))
 ```
 
-## Step Eight - Evaluate the model fit with Yardstick and CARET (Confusion Matrices)
+# Step Eight - Evaluate the model fit with Yardstick and CARET (Confusion Matrices)
 
 [Yardstick](https://yardstick.tidymodels.org/) is another tool in the TidyModels arsenal. It is useful for generating quick summary statistics and evaluation metrics. I will grab the area under the curve estimates to show how well the model fits:
 ```{r roc}
@@ -243,4 +251,20 @@ cm <- caret::confusionMatrix(stranded_preds$stranded_class,
 print(cm)
 ```
 
-In a previous course doing an overview of CARET. I 
+In a previous course doing an overview of CARET. I created an add-in that is being shipped with this webinar as well:
+```{r cm_visual}
+source("Functions/confusion_matrix_plot_function.R") #Get the addin functions
+cm_plot <- conf_matrix_plot(cm, class_label1 = "Not Stranded", 
+                     class_label2 = "Stranded")
+```
+
+The next markdown document will look at how to improve your models with model selection, K-fold cross validation and hyperparameter tuning. I was thinking of doing an ensembling course off the back of this, so please contact me if that would be interesting to you.
+
+# Save the data for consumption in the next tutorials
+
+I will now save the R image data into file, as we will pick this up in the next markdown document.
+
+```{r saveData}
+save.image(file="Data/stranded_data.rdata")
+
+```
