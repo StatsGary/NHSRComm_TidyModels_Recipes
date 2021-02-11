@@ -2,6 +2,7 @@
 title: "Building a TidyModel for Classification from scratch"
 author: "Gary Hutson - Head of Advanced Analytics"
 date: "10/02/2021"
+
 output:
   html_document:
     theme: lumen
@@ -12,6 +13,8 @@ output:
       collapsed: false
       smooth_scroll: false
 ---
+
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -28,13 +31,15 @@ library(vip)
 library(themis)
 ```
 
+
+<img src="Images/TidyModelsBanner.png" width="200" height="300" align="right">
+
 # Starting out with TidyModels
 
 TidyModels is the newer version of Max Kuhn's CARET and can be used for a number of machine learning tasks. This modelling framework takes a different approach to modelling - allowing for a more structured workflow, and like tidyverse, has a whole set of packages for making the machine learning process easier. I will touch on a number of these packages in the following sub sections. 
 
-The framework of a TidyModels approach flows as so:
+This package supercedes that in R for Data Science, as Hadley Wickham admitted he needed a better modelling solution at the time, and Max Kuhn and team have delivered on this. 
 
-![](Images/tidymodels.png)
 The aim of this webinar is to:
 
 - Teach you the steps to build an ML model from scratch
@@ -42,6 +47,12 @@ The aim of this webinar is to:
 - Train and build a workflow with Parsnip
 - Evaluate your model with Yardstick and CARET
 - Improve your model with Tune and Dials
+
+The framework of a TidyModels approach flows as so:
+
+![](Images/tidymodels.png)
+
+I will show you the steps in the following tutorials.
 
 # Step one - Importing data into the R environment
 
