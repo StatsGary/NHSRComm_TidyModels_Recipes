@@ -29,6 +29,7 @@ library(parallel)
 library(doParallel)
 library(vip)
 library(themis)
+library(plotly)
 ```
 
 
@@ -226,9 +227,11 @@ plot <- strand_fitted %>%
                                                          subtitle="A chart to represent the significant variables in the model",
                                                          caption="Produced by Gary Hutson")
 
-print("Creating plot of P values")
-print(plot)
-ggsave("Figures/p_val_plot.png", plot) #Save the plot
+#print("Creating plot of P values")
+#print(plot)
+plotly::ggplotly(plot)
+#print(ggplotly(plot))
+#ggsave("Figures/p_val_plot.png", plot) #Save the plot
 
 ```
 
@@ -275,11 +278,29 @@ cm <- caret::confusionMatrix(stranded_preds$stranded_class,
 print(cm)
 ```
 
-In a previous course doing an overview of CARET. I created an add-in that is being shipped with this webinar as well:
+## Using ConfusionTableR package to visualise and flatten confusion matrix results
+
+<img src="Images/ConfusionTableR.png" width = "125px" height = "150px"> <!--align="right">-->
+
+On the back of the Advanced Modelling course I did for the NHS-R Community I have created a package to work with the outputs of a confusion matrix. This package is aimed at the flattening of binary and multi-class confusion matrix results. 
+
+To load in the package you need to use the remotes package and bring in the ConfusionTableR package, which is available from my [GitHub](https://github.com/StatsGary/ConfusionTableR) site.
 ```{r cm_visual}
-source("Functions/confusion_matrix_plot_function.R") #Get the addin functions
-cm_plot <- conf_matrix_plot(cm, class_label1 = "Not Stranded", 
-                     class_label2 = "Stranded")
+#Load in my ConfusionTableR package to visualise this
+#remotes::install_github("https://github.com/StatsGary/ConfusionTableR") #Use remotes package to install the package 
+#from GitHub r
+library(ConfusionTableR)
+cm_plot <- ConfusionTableR::binary_visualiseR(cm, class_label1 = "Not Stranded", 
+                     class_label2 = "Stranded",
+                     quadrant_col1 = "#53BFD3", quadrant_col2 = "#006838", 
+                     text_col = "white", custom_title = "Stranded patient Confusion Matrix")
+
+# Flatten to store in database
+#Stored confusion matrix
+
+cm_results <- ConfusionTableR::binary_class_cm(cm)
+print(cm_results)
+
 ```
 
 The next markdown document will look at how to improve your models with model selection, K-fold cross validation and hyperparameter tuning. I was thinking of doing an ensembling course off the back of this, so please contact me if that would be interesting to you.
