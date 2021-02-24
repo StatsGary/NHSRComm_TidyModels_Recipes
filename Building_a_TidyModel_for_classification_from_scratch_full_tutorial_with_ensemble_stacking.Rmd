@@ -263,6 +263,12 @@ roc_plot <-
 
 print(roc_plot)
 
+stranded_preds %>% 
+  roc_auc(truth = stranded_class, LR_NotStrandedProb)
+# Get area under the curve value - accuracy
+
+
+
 ```
 
 
@@ -370,8 +376,6 @@ print(cat(paste0("The true accuracy of the model is between the resample testing
 
 This shows that the true accuracy value is somewhere between the reported results from the resampling method and those in our validation sample. 
 
-
-
 # Improve the model with different model selection and resampling
 
 The following example will move on from the logistic regression and aim to build a random forest, and later a decision tree. Other options in Parnsip would be to use a gradient boosted tree to amp up the results further. In addition, I aim at teaching a follow up webinar to this for ensembling - specifically model stacking (Stacks package) and bagging (Baguette package).
@@ -436,7 +440,6 @@ What you would need to do after this is look for more representative features of
 # Improve the model with hyperparameter tuning with the Dials package
 
 We are going to now create a decision tree and we are going to tune the hyperparameters using the dials package. The dials package contains a list of hyperparameter tuning methods and is useful for creating quick hyperparameter grids and aiming to optimise them. 
-
 
 ## Building the decision tree
 
@@ -570,7 +573,7 @@ print(final_tree_pred)
 
 ## Use VIP package to visualise variable importance
 
-We will look at global variable importance. As mentioned prior, to look at local patient level importance, use the LIME package.
+We will look at global variable importance. As mentioned prior, to look at local patient level importance, use the [LIME package](https://cran.r-project.org/web/packages/lime/lime.pdf).
 
 ```{r wf_fit}
 plot <- final_tree_pred %>% 
@@ -614,7 +617,7 @@ You could do similar with viewing this object in the confusion matrix add in, bu
 ```{r final_fit}
 roc_plot <- final_fit_predictions %>% 
   roc_curve(stranded_class, `.pred_Not Stranded`) %>% 
-  autoplot()
+  autoplot() 
 
 print(roc_plot)
 ggsave(filename = "Figures/tuned_tree.png", plot=roc_plot)
@@ -634,7 +637,7 @@ args(rand_forest)
 
 # Ensembling
 
-The next section shows how to use the stacks package to ensemble our decision tree, logistic regression and random forest together.
+The next section shows how to use the stacks package to ensemble our decision tree, logistic regression and random forest together. This uses the [stacks package](https://stacks.tidymodels.org/articles/basics.html).
 
 ## Create the models
 
@@ -653,6 +656,14 @@ rf_model <- rand_forest() %>%
 xg_boost_model <- boost_tree() %>% 
   set_mode("classification") %>% 
   set_engine("xgboost")
+
+nn_model <- mlp(epochs=300, hidden_units = 5, dropout = 0.5) %>% 
+  set_mode("classification") %>% 
+  set_engine("keras", verbose=0)
+
+neighbour_model <- nearest_neighbor() %>% 
+  set_engine("kknn") %>% 
+  set_mode("classification")
 
 # You could tune hyperparameters here, see previous step, for simplicity I am 
 # just instantiating the models
@@ -677,6 +688,20 @@ xgboost_wf <- workflow() %>%
   add_model(xg_boost_model) %>% 
   add_recipe(stranded_rec)
 
+nn_wf <- workflow() %>% 
+  add_model(nn_model) %>% 
+  add_recipe(stranded_rec)
+
+neighbour_wf <- workflow() %>% 
+  add_model(neighbour_model) %>% 
+  add_recipe(stranded_rec)
+
+print(lr_wf)
+print(rf_wf)
+print(xgboost_wf)
+print(nn_wf)
+print(neighbour_wf)
+
 ```
 
 ## Fit the models using K-Fold Cross Validation
@@ -686,26 +711,40 @@ We will now fit our 3 candidates models using resampling, as this is the defacto
 ```{r fit_resamples_stacks}
 
 model_control <- control_grid(save_pred = TRUE, save_workflow = TRUE)
+registerDoParallel(cl)
+#Register cluster for parallel processing
 
-
-lr_fit <- fit_resamples(
+system.time(lr_fit <- fit_resamples(
   lr_wf,
   resamples = ten_fold,
   control = model_control
-)
+))
 
 
-rf_fit <- fit_resamples(
+system.time(rf_fit <- fit_resamples(
   rf_wf,
   resamples = ten_fold,
   control = model_control
-)
+))
 
-xgboost_fit <- fit_resamples(
+system.time(xgboost_fit <- fit_resamples(
   xgboost_wf,
   resamples = ten_fold,
    control = model_control
-)
+))
+
+system.time(nn_fit <- fit_resamples(
+  nn_wf, 
+  resamples = ten_fold, 
+  control = model_control
+))
+
+system.time(neighbours_fit <- fit_resamples(
+  neighbour_wf, 
+  resamples = ten_fold, 
+  control = model_control
+))
+
 ```
 
 ## Create a stacking ensemble
@@ -715,73 +754,102 @@ We will now load the stacks package to create a meta model of the decision tree,
 ```{r stacking}
 
 library(stacks)
-
 meta_stacked_model <- stacks() %>% 
   add_candidates(lr_fit) %>% 
   add_candidates(rf_fit) %>% 
-  add_candidates(xgboost_fit)
+  add_candidates(xgboost_fit) %>% 
+  add_candidates(nn_fit) %>% 
+  add_candidates(neighbours_fit)
+
+print(meta_stacked_model)
 
 ```
+## The stacks model as a tibble
+Really, the stacks model is a fancy tibble. To view it as such, use the casting function to convert to a tibble:
 
+```{r stacks_tibble}
+as_tibble(meta_stacked_model)
+
+```
+This shows that it generates probability predictions for the outcome variable, by each model type. 
+
+##Blending prediction
 This stacks the model, now we will blend the predictions from the models to use in our meta model:
 ```{r stacking_blend}
 meta_stacked_model <- meta_stacked_model %>% 
-  blend_predictions() %>% 
-  fit_members()
+  blend_predictions()
+print(meta_stacked_model)
+
 
 ```
 
-## Collecting the meta stacked model predictions
+The blend_predictions function determines how member model output will ultimately be combined in the final prediction by fitting a LASSO model on the data stack, predicting the true assessment set outcome using the predictions from each of the candidate members. Candidates with nonzero stacking coefficients become members.
 
-The next step we will collect the predictions from the models:
+Now, we will use autoplot on this to look at the trade-off between minimising the number of members, whilst optimising performance:
 
-```{r collect_model_preds}
-lr_stack <- lr_fit %>% 
-  collect_predictions() %>% 
-  select(id, .row, stranded_class, .pred_class)
-
-rf_stack <- rf_fit %>% 
-  collect_predictions() %>% 
-  select(id, .row, stranded_class, .pred_class)
-
-xgboost_stack <- xgboost_fit %>% 
-  collect_predictions() %>% 
-  select(id, .row, stranded_class, .pred_class)
+```{r optim_performance}
+theme_set(theme_minimal())
+autoplot(meta_stacked_model)
+autoplot(meta_stacked_model, type="members")
+autoplot(meta_stacked_model, type="weights")
 ```
+## Fitting candidate models into a stack
 
-## Create ensemble data
+Once we have analysed the diagnostics, and viewed the accuracy and roc, we can then use the fit_members() function to fit our candidate models:
 
-We will join these together in a data frame:
+```{r meta_stacked_membs}
+registerDoParallel(cl)
+#Register cluster for parallel processing
+system.time(meta_stacked_model <- meta_stacked_model %>% 
+  fit_members())
 
-```{r create_stacked_ensemble}
-stack_df <- lr_stack %>% 
-  left_join(rf_stack) %>% 
-  left_join(xgboost_stack)
-
-print(stack_df)
+print(meta_stacked_model)
 
 ```
-## Create meta model for stacking
+Model stacks can be thought of as a group of fitted member models and a set of instructions on how to combine their predictions.
 
-The next step is to create the meta model for making predictions against:
+## Using stacked model to predict test data
 
-```{r meta_model}
+The next stage is to make the predictions on the test hold out set, as we have used resampling to generate different samples on the training data:
 
-meta_stack_model <-
-  svm_rbf() %>% 
-  set_mode("classification") %>% 
-  set_engine("kernlab") %>% 
-  fit(stranded_class ~ ., data = stack_df)
+```{r stacked_model}
 
-# Tidy the outputs
+test_data <- 
+  test_data %>% 
+  bind_cols(predict(meta_stacked_model, .),
+            predict(meta_stacked_model, ., type="prob")) #Expose the prediction probabilities
+
+print(test_data)
 
 ```
 
-## Create final data frame with meta model 
+To visualise the distribution of ensemble model predictions vs actual stranded labels we will visualise this on a scatter chart:
 
-```{r meta_stacked_preds}
-prob_preds_meta <- predict(meta_stack_model, test_data, type="prob")
-clas_preds_meta <- predict(meta_stack_model, test_data)
+## Assess meta model with confusion matrix
+
+We will now assess the hold out sample with the confusion matrix:
+
+```{r confu_mat_stacks}
+cm <- caret::confusionMatrix(test_data$stranded_class,
+                       test_data$.pred_class, 
+                       positive="Stranded")
+
+print(cm)
+```
+
+The ensemble performs well, especially in terms of sensitivitiy to predicting the stranded class, however I think class imbalance in this dataset would need to be adjusted further. 
+
+Visualising this using the ConfusionTableR package:
+
+```{r binary_visual}
+cm_plot <- ConfusionTableR::binary_visualiseR(cm, class_label1 = "Not Stranded", 
+                     class_label2 = "Stranded",
+                     quadrant_col1 = "#53BFD3", quadrant_col2 = "#006838", 
+                     text_col = "white", custom_title = "Stranded patient Confusion Matrix")
+
 
 ```
 
+## Hyperparameter tuning 
+
+The next phase of this would be to undertake hyperparameter tuning using dials, with the meta model to further improve the accuracy. I am sensing the best approach, however, would be to find more variables in the system th are indicative of a patient becoming stranded. 
