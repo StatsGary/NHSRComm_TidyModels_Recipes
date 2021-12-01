@@ -1,7 +1,7 @@
 ---
 title: "Building a TidyModel for Classification from scratch"
 author: "Gary Hutson - Head of Machine Learning"
-date: "10/02/2021"
+date: "15/12/2021"
 
 output:
   html_document:
