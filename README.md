@@ -33,6 +33,6 @@ To look at a previous session I did around Advanced Modelling using Caret, eithe
 If you are an R user that does ML with Python, then check out the [Reticulate webinar](https://www.youtube.com/watch?v=8WE-EU5k97Q&feature=emb_logo) from January 2021. 
 
 ## Signing off
-If you have enjoyed this webinar then please drop me a line at [@StatsGary](https://twitter.com/StatsGary). I am currently working as the Head of Advanced Analytics for [Arden and Greater East Midlands CSU](https://www.ardengemcsu.nhs.uk/) and I would be happy to take any questions via email: <g.hutson@nhs.net>.
+If you have enjoyed this webinar then please drop me a line at [@StatsGary](https://twitter.com/StatsGary). I am currently working as the Head of Machine Learning and I would be happy to take any questions via email: <hutsonshacks@outlook.com>.
 
 
