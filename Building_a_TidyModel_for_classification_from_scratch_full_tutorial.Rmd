@@ -1,6 +1,6 @@
 ---
 title: "Building a TidyModel for Classification from scratch"
-author: "Gary Hutson - Head of Advanced Analytics"
+author: "Gary Hutson - Head of Machine Learning"
 date: "10/02/2021"
 
 output:
@@ -84,7 +84,7 @@ The following code looks at the class imbalance as a volume and proportion and t
 ```{r class_imbalance}
 class_bal_table <- table(strand_pat$stranded_class)
 prop_tab <- prop.table(class_bal_table)
-upsample_ratio <- 1-(class_bal_table[2] / sum(class_bal_table))
+upsample_ratio <- (class_bal_table[2] / sum(class_bal_table))
 print(prop_tab)
 print(class_bal_table)
 
@@ -204,7 +204,7 @@ strand_fit <-
 The final step is to use the pull_workflow_fit() parameter to retrieve the fit on the workflow:
 ```{r extract_fit}
 strand_fitted <- strand_fit %>% 
-  pull_workflow_fit() %>% 
+  extract_fit_parsnip() %>% 
   tidy()
 
 print(strand_fitted)
@@ -587,7 +587,7 @@ We will look at global variable importance. As mentioned prior, to look at local
 
 ```{r wf_fit}
 plot <- final_tree_pred %>% 
-  pull_workflow_fit() %>% 
+  extract_fit_parsnip() %>% 
   vip(aesthetics = list(color = "black", fill = "#26ACB5")) + theme_minimal()
 
 print(plot)
@@ -645,6 +645,178 @@ args(rand_forest)
 
 ```
 
+# XGBoost - Extreme Gradient Boosting
+
+Finally we will look at implementing a really powerful model that is used a lot, by me, in Kaggle competitions. Last month I finished in the top 6% of Kaggle entrants, just using this model and doing some preprocessing.
+
+## Prepare the recipe and bake
+From the previous recipe we created applying the preprocessing steps to the stranded data we are going to try and improve our model using tuning, resampling and powerful model training techniques, using bagged trees and gradient boosting. 
+
+```{r using_initial_recipe}
+# Use stranded recipe
+# Prepare the recipe
+strand_rec_preped <- stranded_rec %>% 
+  prep()
+
+#Bake the recipe
+strand_folds <- 
+  recipes::bake(
+    strand_rec_preped,
+    new_data = training(split)
+  ) %>% 
+  rsample::vfold_cv(v = 10)
+
+```
+
+## Setup our XGBoost Model specification
+```{r xgboost_model}
+xgboost_model <- 
+  parsnip::boost_tree(
+  mode = "classification",
+  trees=1000,
+  min_n = tune(),
+  tree_depth = tune(),
+  learn_rate = tune(),
+  loss_reduction = tune()
+  ) %>% 
+  set_engine("xgboost")
+
+
+```
+
+The next step, as we covered earlier, is to create a grid search in dials to go over each one of these hyperparameters to tune the model.
+
+## Specifiying hyperparameter search space via grid tuning
+
+```{r xgboost_model_grid}
+xgboost_params <- 
+  dials::parameters(
+    min_n(),
+    tree_depth(), 
+    learn_rate(),
+    loss_reduction()
+  )
+
+xgboost_grid <- 
+  dials::grid_max_entropy(
+    xgboost_params, size = 100 #Indicates the size of the search space
+  )
+
+xgboost_grid
+
+
+```
+The next step is to set up the workflow for the grid.
+
+## Workflow for model
+
+```{r xgboost_model_grid_wf}
+xgboost_wf <- 
+  workflows::workflow() %>% 
+  add_model(xgboost_model) %>% 
+  add_formula(stranded_class ~ .)
+
+
+```
+
+The next step is to now tune the model using your tuning grid:
+
+```{r xgboost_model_grid_wf_tune}
+xgboost_tuned <- tune::tune_grid(
+  object = xgboost_wf,
+  resamples  = strand_folds,
+  grid = xgboost_grid,
+  metrics = yardstick::metric_set(accuracy, roc_auc),
+  control = tune::control_grid(verbose=TRUE)
+)
+
+```
+
+## Getting the best hyperparameters and select them
+
+Let's now get the best hyperparameters for the model:
+
+```{r plucking_the_best_hp}
+xgboost_tuned %>% 
+  tune::show_best(metric="roc_auc")
+
+```
+Now let's select the most performant from the model:
+```{r plucking_the_best_hp_show_best}
+xgboost_best_params <- xgboost_tuned %>% 
+  tune::select_best(metric="roc_auc")
+
+```
+
+The final stage is finalizing the model to use the best parameters:
+```{r plucking_the_best_hp_select_best}
+xgboost_model_final <- xgboost_model %>% 
+  tune::finalize_model(xgboost_best_params)
+
+```
+
+## Evaluate our XGBoost model on the training and testing set
+
+```{r eval_xgboost_on_train}
+
+# Create training set
+train_proc <- bake(strand_rec_preped,
+    new_data = training(split))
+
+train_prediction <- xgboost_model_final %>% 
+  fit(
+    formula = stranded_class ~ .,
+    data = train_proc
+  ) %>% 
+  predict(new_data = train_proc) %>% 
+  bind_cols(training(split))
+
+
+xgboost_score_train <- 
+  train_prediction %>% 
+  yardstick::metrics(stranded_class, .pred_class) 
+
+
+# Create testing set
+test_proc <- bake(strand_rec_preped,
+    new_data = testing(split))
+
+test_prediction <- xgboost_model_final %>% 
+  fit(
+    formula = stranded_class ~ .,
+    data = train_proc
+  ) %>% 
+  predict(new_data = test_proc) 
+
+# Bind test predictions to labels
+test_prediction <- cbind(test_prediction, testing(split))
+
+xgboost_score <- 
+  test_prediction %>% 
+  yardstick::metrics(stranded_class, .pred_class) 
+
+
+```
+
+## Run the data through ConfusionTableR to store
+The final step we will use ConfusionTableR to store the classification results in a csv file:
+
+```{r eval_confusion_table_R}
+library(data.table)
+library(ConfusionTableR)
+cm_outputs <- ConfusionTableR::binary_class_cm(train_labels = test_prediction$.pred_class,
+                                 truth_labels = test_prediction$stranded_class)
+
+data.table::fwrite(cm_outputs$record_level_cm,
+                   file=paste0("Data/xgboost_results_", as.character(Sys.time()),
+                               ".csv"))
+
+```
+
+That wraps up this part of the demo, the xgboost has improved performance massively, but it has done it in the wrong direction, as it is picking up many more true negative examples. 
+
 # Ensembling
 
 If you are interested in a further session on ensembling - then I would be happy to go over the Stacks and Baguette packages for model stacking and bagging. These are relatively new additions to TidyModels and they are not as optimised as some of the caret packages, but I would be happy to show you how these are implemented. 
+
+
