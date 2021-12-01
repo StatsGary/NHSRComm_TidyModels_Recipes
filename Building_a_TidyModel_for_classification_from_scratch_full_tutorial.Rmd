@@ -275,8 +275,7 @@ I use the CARET package and utilise the confusion matrix functions to perform th
 ```{r cm}
 library(caret)
 cm <- caret::confusionMatrix(stranded_preds$stranded_class,
-                       stranded_preds$LR_Class, 
-                       positive="Stranded")
+                       stranded_preds$LR_Class)
 
 print(cm)
 ```
@@ -299,8 +298,22 @@ cm <- ConfusionTableR::binary_visualiseR(
   quadrant_col2 = "#4397D2", 
   custom_title = "Stranded Patient Confusion Matrix", 
   text_col= "black",
-  cm_stat_size = 0.9)
+  cm_stat_size = 1.2,
+  round_dig = 2)
 
+
+```
+
+## Save the information in database
+As this is a binary classification problem, then there is the potential to store the outputs of the model into a database. The ConfusionTableR package can do this for you and to implement this in a binary classification model, you would use the `binary_class_cm` to output this to a list whereby you can then flatten the table. This works very much like the broom package for linear regression outputs. 
+
+```{r confusion_table_R_flatten}
+cm_binary_class <- ConfusionTableR::binary_class_cm(
+  train_labels = stranded_preds$stranded_class,
+  truth_labels = stranded_preds$LR_Class)
+
+# Expose the record level confusion matrix 
+glimpse(cm_binary_class$record_level_cm)
 
 ```
 
