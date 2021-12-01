@@ -31,6 +31,7 @@ library(doParallel)
 library(vip)
 library(themis)
 library(plotly)
+library(ConfusionTableR)
 ```
 
 
@@ -63,7 +64,8 @@ I will load in the stranded patient data - a stranded patient is a patient that 
 
 ```{r load_in}
 # Read in the data
-strand_pat <- read_csv("Data/Stranded_Data.csv") %>% 
+library(NHSRdatasets)
+strand_pat <- NHSRdatasets::stranded_data %>% 
   setNames(c("stranded_class", "age", "care_home_ref_flag", "medically_safe_flag", 
              "hcop_flag", "needs_mental_health_support_flag", "previous_care_in_last_12_month", "admit_date", "frail_descrip")) %>% 
   mutate(stranded_class = factor(stranded_class)) %>% 
@@ -285,22 +287,20 @@ print(cm)
 
 On the back of the Advanced Modelling course I did for the NHS-R Community I have created a package to work with the outputs of a confusion matrix. This package is aimed at the flattening of binary and multi-class confusion matrix results. 
 
-To load in the package you need to use the remotes package and bring in the ConfusionTableR package, which is available from my [GitHub](https://github.com/StatsGary/ConfusionTableR) site.
 ```{r cm_visual}
-#Load in my ConfusionTableR package to visualise this
-#remotes::install_github("https://github.com/StatsGary/ConfusionTableR") #Use remotes package to install the package 
-#from GitHub r
+
 library(ConfusionTableR)
-cm_plot <- ConfusionTableR::binary_visualiseR(cm, class_label1 = "Not Stranded", 
-                     class_label2 = "Stranded",
-                     quadrant_col1 = "#53BFD3", quadrant_col2 = "#006838", 
-                     text_col = "white", custom_title = "Stranded patient Confusion Matrix")
+cm <- ConfusionTableR::binary_visualiseR(
+  train_labels = stranded_preds$stranded_class,
+  truth_labels = stranded_preds$LR_Class,
+  class_label1 = "Not Stranded", 
+  class_label2 = "Stranded",
+  quadrant_col1 = "#28ACB4", 
+  quadrant_col2 = "#4397D2", 
+  custom_title = "Stranded Patient Confusion Matrix", 
+  text_col= "black",
+  cm_stat_size = 0.9)
 
-# Flatten to store in database
-#Stored confusion matrix
-
-cm_results <- ConfusionTableR::binary_class_cm(cm)
-print(cm_results)
 
 ```
 
