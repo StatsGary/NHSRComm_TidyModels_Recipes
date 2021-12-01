@@ -84,10 +84,10 @@ The following code looks at the class imbalance as a volume and proportion and t
 ```{r class_imbalance}
 class_bal_table <- table(strand_pat$stranded_class)
 prop_tab <- prop.table(class_bal_table)
-upsample_ratio <- class_bal_table[2] / sum(class_bal_table)
+upsample_ratio <- 1-(class_bal_table[2] / sum(class_bal_table))
 print(prop_tab)
 print(class_bal_table)
-print(upsample_ratio)
+
 
 
 ```
