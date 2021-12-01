@@ -649,6 +649,13 @@ args(rand_forest)
 
 Finally we will look at implementing a really powerful model that is used a lot, by me, in Kaggle competitions. Last month I finished in the top 6% of Kaggle entrants, just using this model and doing some preprocessing.
 
+The logic of XGBoost is awesome. Essentially this performs multiple training iterations and over each iteration the model learns the error. To visualise this diagramatically: 
+
+![](Figures/xgboost_diagram.png "K fold cross validation")
+This is how the model learns, but can easily overfit, thus why hyperparameter tuning is needed. 
+
+Let's learn how to train one of these Kaggle-beaters!
+
 ## Prepare the recipe and bake
 From the previous recipe we created applying the preprocessing steps to the stranded data we are going to try and improve our model using tuning, resampling and powerful model training techniques, using bagged trees and gradient boosting. 
 
@@ -794,6 +801,8 @@ test_prediction <- cbind(test_prediction, testing(split))
 xgboost_score <- 
   test_prediction %>% 
   yardstick::metrics(stranded_class, .pred_class) 
+
+print(xgboost_score)
 
 
 ```
